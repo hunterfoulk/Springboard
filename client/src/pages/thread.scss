@@ -383,5 +383,12 @@
   .current-thread-main-light {
     // background-color: green;
     width: 90%;
+
+    .current-thread-main-left {
+      width: 100%;
+    }
+    .current-thread-main-right {
+      display: none;
+    }
   }
 }

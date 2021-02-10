@@ -113,18 +113,19 @@
   // background-color: #2c2f33;
   background-color: #1a1a1b;
 
-  padding: 5px 3px;
+  // padding: 5px 3px;
 
   .card-left {
     display: flex;
     width: 75%;
     .image-container {
-      //   background-color: green;
+      // background-color: rgba(54, 54, 54, 0.815);
+      background-color: rgb(201, 209, 217);
       width: 30%;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 5px 3px;
+      // padding: 5px 3px;
       border-right: 1px solid rgba(215, 46, 52, 0.486);
       img {
         width: 90px;
