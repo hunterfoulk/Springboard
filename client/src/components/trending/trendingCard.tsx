@@ -3,6 +3,7 @@ import "./trendingCard.scss"
 import Page from "../../images/flame.svg"
 import { ThreadContext } from "../../context/contexts/threadContext"
 import { FaCommentAlt } from 'react-icons/fa';
+import { ThemeContext } from "../../context/contexts/themeContext"
 
 
 interface Props {
@@ -11,6 +12,8 @@ interface Props {
 
 const TrendingCard: React.FC<Props> = ({ }) => {
     const { dispatch: threadDispatch, threadData } = useContext(ThreadContext);
+    const { dispatch: themeDispatch, themeData, } = useContext(ThemeContext);
+
     const [state, setState] = useState([])
 
     useEffect(() => {
@@ -27,7 +30,7 @@ const TrendingCard: React.FC<Props> = ({ }) => {
 
     return (
         <>
-            <div className="trending-card">
+            <div className={`trending-card-${themeData.theme}`}>
                 <div className="trending-card-header">
                     <img src={Page} />
                     <span>Trending Threads</span>

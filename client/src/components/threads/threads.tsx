@@ -6,6 +6,7 @@ import { FaLink } from 'react-icons/fa';
 import { FaTimesCircle } from 'react-icons/fa';
 import "./threads.scss"
 import { ThreadContext } from "../../context/contexts/threadContext";
+import { ThemeContext } from "../../context/contexts/themeContext";
 import useClickOutside from "../../hooks/useClickOutside"
 import { Link, useHistory } from "react-router-dom";
 
@@ -18,6 +19,7 @@ interface Props {
 
 const Threads: React.FC<Props> = ({ thread, i, image }) => {
     const { dispatch: threadDispatch, threadData } = useContext(ThreadContext);
+    const { dispatch: themeDispatch, themeData } = useContext(ThemeContext);
     const [dropId, setDropId] = useState("")
     const history = useHistory();
     const ref = useRef<any>();
@@ -65,13 +67,13 @@ const Threads: React.FC<Props> = ({ thread, i, image }) => {
 
     return (
         <>
-            <div className="thread" >
+            <div className={`thread-${themeData.theme}`} >
                 <div className="user-container">
                     <div className="image-container">
                         <img src={image} />
                     </div>
-                    <span style={{ fontSize: "13px" }} >Posted by <span style={{ fontSize: "13px" }}>u/{thread.user}</span></span>
-                    <Moment fromNow className="date" style={{ fontSize: "13px" }}>{thread.date}</Moment>
+                    <span  >Posted by <span >u/{thread.user}</span></span>
+                    <Moment fromNow className="date">{thread.date}</Moment>
                 </div>
                 <div className="thread-title">
                     <span>{thread.thread_title}</span>

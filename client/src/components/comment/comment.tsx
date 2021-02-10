@@ -5,6 +5,7 @@ import { MdReportProblem } from 'react-icons/md';
 import { GoComment } from 'react-icons/go';
 import Moment from 'react-moment';
 import { ThreadContext } from "../../context/contexts/threadContext"
+import { ThemeContext } from "../../context/contexts/themeContext"
 import "./comment.scss"
 import CategoryActions from "../../actions/actions"
 import Reply from "../comment/reply"
@@ -21,6 +22,7 @@ interface Props {
 
 const Comment: React.FC<Props> = ({ comment }) => {
     const { dispatch: threadDispatch, threadData, } = useContext(ThreadContext);
+    const { dispatch: themeDispatch, themeData } = useContext(ThemeContext);
     const [dropId, setDropId] = useState<number | undefined>(undefined)
     const [message, setMessage] = useState<string>("")
     const { createReply } = CategoryActions();
@@ -74,7 +76,7 @@ const Comment: React.FC<Props> = ({ comment }) => {
     return (
 
         <>
-            <div className="comment">
+            <div className={`comment-${themeData.theme}`}>
                 <div className="comment-user">
                     <span style={{ fontWeight: "bold" }}>{comment.user}</span>
                     <span style={{ marginRight: "5px", marginBottom: "5px" }}>·</span>

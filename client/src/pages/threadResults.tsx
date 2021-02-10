@@ -3,6 +3,7 @@ import "./threadresults.scss"
 import { useLocation, useRouteMatch } from "react-router-dom";
 import Threads from "../components/threads/threads"
 import { ThreadContext } from "../context/contexts/threadContext"
+import { ThemeContext } from "../context/contexts/themeContext"
 import CategoryActions from "../actions/actions"
 import Loading from "../components/loading/loading"
 import TrendingCard from "../components/trending/trendingCard"
@@ -24,6 +25,8 @@ const ThreadResults: React.FC<Props> = ({ state, setState, recents, setRecents }
     const [header, setHeader] = useState("")
     const [image, setImage] = useState<string>("")
     const { dispatch: threadDispatch, threadData } = useContext(ThreadContext);
+    const { dispatch: themeDispatch, themeData } = useContext(ThemeContext);
+
     const { fetchThreads, fetchCategoryImage, fetchRecents, fetchThread } = CategoryActions();
     const [loading, setLoading] = useState<boolean>(true)
     const history = useHistory();
@@ -90,7 +93,7 @@ const ThreadResults: React.FC<Props> = ({ state, setState, recents, setRecents }
 
     return (
         <>
-            {loading ? <Loading /> : <div className="thread-results-main">
+            {loading ? <Loading /> : <div className="thread-results-main" style={{ backgroundColor: themeData.theme === "dark" ? "#121212" : "rgb(248, 248, 248)" }}>
                 <div className="header-container">
                     <div className="header-left">
                         <div className="image-container">
@@ -98,8 +101,8 @@ const ThreadResults: React.FC<Props> = ({ state, setState, recents, setRecents }
                         </div>
                     </div>
                     <div className="header-right">
-                        <span>{header}</span>
-                        <p>/t/{header}</p>
+                        <span style={{ color: themeData.theme === "dark" ? "#c9d1d9" : "black" }}>{header}</span>
+                        <p style={{ color: themeData.theme === "dark" ? "#c9d1d9" : "black" }}>/t/{header}</p>
                     </div>
                 </div>
                 <div className="threads-bottom">

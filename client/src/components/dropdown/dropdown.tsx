@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
@@ -10,6 +10,7 @@ import { GoPlus } from 'react-icons/go';
 import useFetch from "../../hooks/useFetch"
 import CategoryActions from "../../actions/actions"
 import { Link, useHistory } from "react-router-dom";
+import { ThemeContext } from "../../context/contexts/themeContext"
 
 interface Props {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>,
@@ -24,9 +25,12 @@ const useStyles = makeStyles((theme: Theme) =>
     formControl: {
       margin: theme.spacing(1),
       minWidth: 160,
+
     },
     selectEmpty: {
       marginTop: theme.spacing(2),
+
+
     },
   }),
 );
@@ -34,6 +38,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const Dropdown: React.FC<Props> = ({ setOpen, setState, state }) => {
   const classes = useStyles();
   const history = useHistory();
+  const { dispatch: themeDispatch, themeData } = useContext(ThemeContext);
 
 
 
@@ -107,17 +112,19 @@ const Dropdown: React.FC<Props> = ({ setOpen, setState, state }) => {
           onChange={onStateChange}
           className={classes.selectEmpty}
           inputProps={{ 'aria-label': 'age' }}
+          style={{ color: themeData.theme === "dark" ? ' #c9d1d9' : "black" }}
         >
           <option label="All" value="0">All</option>
-          <option label="Technology" value="2">Technology</option>
-          <option label="Fitness" value="1">Fitness</option>
-          <option label="Science" value="3">Science</option>
-          <option label="Finance" value="6">Finance</option>
-          <option label="Travel" value="4">Travel</option>
-          <option label="Books" value="5">Books</option>
-          <option label="Politics" value="7">Politics</option>
+          <option style={{ color: "black" }} label="Technology" value="2">Technology</option>
+          <option style={{ color: "black" }} label="Fitness" value="1">Fitness</option>
+          <option style={{ color: "black" }} label="Science" value="3">Science</option>
+          <option style={{ color: "black" }} label="Finance" value="6">Finance</option>
+          <option style={{ color: "black" }} label="Travel" value="4">Travel</option>
+          <option style={{ color: "black" }} label="Books" value="5">Books</option>
+          <option style={{ color: "black" }} label="Politics" value="7">Politics</option>
         </NativeSelect>
-        <FormHelperText>Change Category</FormHelperText>
+
+        <FormHelperText style={{ color: themeData.theme === "dark" ? ' #c9d1d9' : "black" }}>Change Category</FormHelperText>
       </FormControl>
       <button className="new-thread-button" onClick={() => setOpen(true)}>
         <GoPlus style={{ position: "relative", right: "4px" }} /> New Thread

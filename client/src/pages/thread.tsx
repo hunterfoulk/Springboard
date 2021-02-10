@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect, useRef } from 'react'
 import "./thread.scss"
 import { ThreadContext } from "../context/contexts/threadContext"
+import { ThemeContext } from "../context/contexts/themeContext"
 import { Link, useHistory } from "react-router-dom";
 import { useLocation, useRouteMatch } from "react-router-dom";
 import CategoryActions from "../actions/actions"
@@ -27,6 +28,7 @@ interface Props {
 
 const Thread: React.FC<Props> = ({ recents, setRecents }) => {
     const { dispatch: threadDispatch, threadData, } = useContext(ThreadContext);
+    const { dispatch: themeDispatch, themeData, } = useContext(ThemeContext);
     const { fetchThread, fetchRecents, fetchCategoryImage, createComment } = CategoryActions();
     const history = useHistory();
     const location = useLocation<any>();
@@ -115,7 +117,7 @@ const Thread: React.FC<Props> = ({ recents, setRecents }) => {
 
     return (
         <>
-            {loading ? <Loading /> : <div className="current-thread-main">
+            {loading ? <Loading /> : <div className={`current-thread-main-${themeData.theme}`}>
 
                 <div className="current-thread-main-left">
                     <div className="current-thread">
@@ -135,7 +137,7 @@ const Thread: React.FC<Props> = ({ recents, setRecents }) => {
                             <p>{threadData.thread.body}</p>
                         </div>
                         <div className="current-bottom-bar">
-                            <FaCommentAlt style={{ position: "relative", top: "2px", color: "rgb(215, 46, 51)", marginRight: "3px" }} /><span style={{ fontSize: "14.5px", position: "relative", top: "0.5px" }}> {threadData.thread.comments?.length}</span> <span style={{ marginLeft: "5px" }}>Comments </span>
+                            <FaCommentAlt style={{ position: "relative", top: "3.5px", color: "rgb(215, 46, 51)", marginRight: "3px" }} /><span style={{ fontSize: "14.5px", position: "relative", top: "0.5px" }}> {threadData.thread.comments?.length}</span> <span style={{ marginLeft: "5px" }}>Comments </span>
                             <FaShare style={{ position: "relative", top: "2px", color: "rgb(215, 46, 51)", marginLeft: "20px", marginRight: "3px" }} /> <span onClick={() => setShareDropdown(true)}>Share</span>
                             {shareDropdown && <div className="dropdown">
                                 <span className="copy-span" style={{ fontSize: "13px" }} onClick={handleCopyLink}>

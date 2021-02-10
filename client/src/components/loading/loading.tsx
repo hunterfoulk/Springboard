@@ -8,7 +8,9 @@ const useStyles = makeStyles((theme: Theme) =>
             display: 'flex',
             '& > * + *': {
                 marginLeft: theme.spacing(2),
+
             },
+            height: "100vh"
         },
     }),
 );

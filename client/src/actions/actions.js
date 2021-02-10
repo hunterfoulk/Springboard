@@ -48,7 +48,6 @@ export default function CategoryActions() {
             let header = response.data
             console.log("HEADER", header)
             return header
-            // threadDispatch({ type: 'UPDATE_THREADS', header: header });
         } catch (error) {
             console.log(error)
         }

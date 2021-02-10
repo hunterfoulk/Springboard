@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import "./categoryCard.scss"
 import Moment from 'react-moment';
+import { ThemeContext } from "../../context/contexts/themeContext"
 
 interface Props {
     image: string
@@ -13,12 +14,13 @@ interface Props {
 }
 
 const CategoryCard: React.FC<Props> = ({ image, title, count, date, details }) => {
+    const { dispatch: themeDispatch, themeData, } = useContext(ThemeContext);
 
 
     console.log("date", date)
     return (
         <>
-            <div className="category-card">
+            <div className={`category-card-${themeData.theme}`}>
                 <div className="category-card-header">
 
                 </div>

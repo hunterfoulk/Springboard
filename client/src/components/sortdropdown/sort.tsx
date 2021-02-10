@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
+import { ThreadContext } from "../../context/contexts/threadContext"
+import { ThemeContext } from "../../context/contexts/themeContext"
+
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -33,6 +36,9 @@ export default function NativeSelects() {
         age: '',
         name: 'hai',
     });
+    const { dispatch: threadDispatch, threadData } = useContext(ThreadContext);
+    const { dispatch: themeDispatch, themeData } = useContext(ThemeContext);
+
 
     const handleChange = (event: React.ChangeEvent<{ name?: string; value: unknown }>) => {
         const name = event.target.name as keyof typeof state;
@@ -40,7 +46,25 @@ export default function NativeSelects() {
             ...state,
             [name]: event.target.value,
         });
+
+        switch (event.target.value) {
+            case "New":
+                console.log("NEW FIRED")
+
+
+                threadDispatch({ type: 'SORT_COMMENTS_DATE' })
+
+                break;
+            case "Top":
+                console.log("TOP FIRED")
+                threadDispatch({ type: 'SORT_COMMENTS_REPLIES' })
+
+                break;
+            default:
+                break;
+        }
     };
+
 
 
     return (
@@ -52,12 +76,13 @@ export default function NativeSelects() {
                 name="age"
                 className={classes.selectEmpty}
                 inputProps={{ 'aria-label': 'age' }}
+                style={{ color: themeData.theme === "dark" ? ' grey' : "black" }}
             >
-                <option value="">New</option>
-                <option value={10}>Top</option>
-                <option value={20}>Old</option>
+                <option value="Top">Top</option>
+                <option value="New">New</option>
+
             </NativeSelect>
-            <FormHelperText>Sort by</FormHelperText>
+            <FormHelperText style={{ color: themeData.theme === "dark" ? ' grey' : "black" }}>Sort by</FormHelperText>
         </FormControl>
     )
 }

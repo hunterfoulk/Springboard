@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import "./cards.scss"
 import Moment from 'react-moment';
 import { triggerAsyncId } from 'async_hooks';
 import { Link, useHistory } from "react-router-dom";
+import { ThemeContext } from "../../context/contexts/themeContext"
 
 interface Props {
     card: Category
@@ -12,6 +13,7 @@ interface Props {
 
 const Card: React.FC<Props> = ({ card, setState }) => {
     const history = useHistory();
+    const { dispatch: themeDispatch, themeData } = useContext(ThemeContext);
 
     const handleRoute = async (card: any) => {
         let category = card.title.charAt(0).toUpperCase() + card.title.slice(1)
@@ -28,7 +30,7 @@ const Card: React.FC<Props> = ({ card, setState }) => {
 
     return (
         <>
-            <div className="card">
+            <div className={`card-${themeData.theme}`}>
                 <div className="card-left">
                     <div className="image-container">
 
@@ -50,7 +52,7 @@ const Card: React.FC<Props> = ({ card, setState }) => {
                     </div>
                     <div className="recent-threads-container">
 
-                        {card.threads.length === 0 ? <span>No threads currently posted.</span> :
+                        {card.threads.length === 0 ? <span className="no-threads">No threads currently posted.</span> :
                             card.threads.map((thread) => {
                                 card.threads.length = 3
                                 return (

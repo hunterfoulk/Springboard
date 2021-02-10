@@ -78,6 +78,29 @@ export const threadReducer = (state: any, action: any) => {
             };
 
 
+        case 'SORT_COMMENTS_REPLIES':
+            return {
+                ...state,
+                thread: {
+                    ...state.thread,
+                    comments: state.thread.comments.sort(function (b: any, a: any) {
+                        return a.replies.length - b.replies.length;
+                    })
+                }
+            };
+
+
+        case 'SORT_COMMENTS_DATE':
+            return {
+                ...state,
+                thread: {
+                    ...state.thread,
+                    comments: state.thread.comments.sort(function (b: any, a: any) {
+                        return a.comment_id - b.comment_id;
+                    })
+                }
+            };
+
 
 
         case 'CLEAR_RESULTS':
