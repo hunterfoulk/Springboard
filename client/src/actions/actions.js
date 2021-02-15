@@ -117,6 +117,21 @@ export default function CategoryActions() {
     }
 
 
+    async function fetchTrends() {
+
+        try {
+            console.log("trending dropdown fired")
+
+            const response = await axios.get("http://localhost:8000/fetchTrends")
+            let trendings = response.data
+            return trendings
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+
     return {
         getCategories,
         createThread,
@@ -125,7 +140,8 @@ export default function CategoryActions() {
         fetchRecents,
         fetchThread,
         createComment,
-        createReply
+        createReply,
+        fetchTrends
     }
 }
 

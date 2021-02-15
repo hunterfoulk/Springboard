@@ -79,24 +79,79 @@ const Dropdown: React.FC<Props> = ({ setOpen, setState, state }) => {
 
       case '3':
         console.log('sci was chosen');
+        let science = 'Science'
+        setState(science)
+        history.push({
+          pathname: `/t/${science}`,
+          state: { category: event.target.value, header: science, dropdownState: science },
+
+        });
         break;
 
       case '6':
         console.log('finance was chosen');
+        let finance = 'Finance'
+        setState(finance)
+        history.push({
+          pathname: `/t/${finance}`,
+          state: { category: event.target.value, header: finance, dropdownState: finance },
+
+        });
         break;
 
       case '4':
         console.log('travel was chosen');
+        let travel = 'Travel'
+        setState(travel)
+        history.push({
+          pathname: `/t/${travel}`,
+          state: { category: event.target.value, header: travel, dropdownState: travel },
+
+        });
         break;
 
       case '5':
         console.log('books was chosen');
+        let books = 'Books'
+        setState(books)
+        history.push({
+          pathname: `/t/${books}`,
+          state: { category: event.target.value, header: books, dropdownState: books },
+
+        });
         break;
 
       case '7':
         console.log('politics was chosen');
+        let politics = 'Politics'
+        setState(politics)
+        history.push({
+          pathname: `/t/${politics}`,
+          state: { category: event.target.value, header: politics, dropdownState: politics },
+
+        });
         break;
 
+      case '8':
+        console.log('programming was chosen');
+        let programming = 'Programming'
+        setState(programming)
+        history.push({
+          pathname: `/t/${programming}`,
+          state: { category: event.target.value, header: programming, dropdownState: programming },
+
+        });
+        break;
+      case '9':
+        console.log('art was chosen');
+        let art = 'Art'
+        setState(art)
+        history.push({
+          pathname: `/t/${art}`,
+          state: { category: event.target.value, header: art, dropdownState: art },
+
+        });
+        break;
       default:
         break;
     }
@@ -122,6 +177,8 @@ const Dropdown: React.FC<Props> = ({ setOpen, setState, state }) => {
           <option style={{ color: "black" }} label="Travel" value="4">Travel</option>
           <option style={{ color: "black" }} label="Books" value="5">Books</option>
           <option style={{ color: "black" }} label="Politics" value="7">Politics</option>
+          <option style={{ color: "black" }} label="Programming" value="8">Politics</option>
+          <option style={{ color: "black" }} label="Art" value="9">Politics</option>
         </NativeSelect>
 
         <FormHelperText style={{ color: themeData.theme === "dark" ? ' #c9d1d9' : "black" }}>Change Category</FormHelperText>

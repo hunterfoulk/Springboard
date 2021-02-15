@@ -1,6 +1,6 @@
 .card-light {
   width: 70%;
-  max-width: 1150px;
+  max-width: 1180px;
   height: 180px;
   max-height: 180px;
   display: flex;
@@ -35,6 +35,7 @@
       padding: 5px 3px;
       width: 70%;
       justify-content: center;
+
       span {
         font-size: 30px;
         margin-left: 25px;
@@ -84,9 +85,12 @@
         display: flex;
         align-items: center;
         margin-bottom: 15px;
+        font-size: 15px;
+
         .recent-thread-title:hover {
           text-decoration: underline;
           padding: 0px;
+
           cursor: pointer;
         }
         .date {
@@ -120,7 +124,7 @@
     width: 75%;
     .image-container {
       // background-color: rgba(54, 54, 54, 0.815);
-      background-color: rgb(201, 209, 217);
+      // background-color: rgb(215, 46, 51);
       width: 30%;
       display: flex;
       align-items: center;
@@ -191,6 +195,7 @@
         display: flex;
         align-items: center;
         margin-bottom: 15px;
+        font-size: 15px;
         .recent-thread-title {
           color: #c9d1d9;
         }

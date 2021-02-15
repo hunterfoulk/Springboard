@@ -242,6 +242,33 @@ app.post('/createReply', async (req, res, next) => {
 });
 
 
+app.get('/fetchTrends', async (req, res, next) => {
+  try {
+    console.log("TRENDS FIRED")
+    let threads = await knex.select('*').from('threads').join("category", "category.category_id", "=", "threads.category")
 
+
+
+
+    for (const thread of threads) {
+      const comments = await knex.from('comments').select('*').where('thread_id', '=', thread.thread_id)
+
+      thread.comments = comments
+
+    }
+    threads.sort(function (b, a) {
+      return a.comments.length - b.comments.length;
+    })
+
+    console.log("TRENDING THREADS", threads)
+
+
+    res.send(threads)
+
+  } catch (error) {
+    console.log(error)
+  }
+
+});
 
 server.listen(PORT, () => console.log(`Server started on port: ${PORT}`));

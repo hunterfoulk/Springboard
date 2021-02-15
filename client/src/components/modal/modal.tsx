@@ -34,13 +34,14 @@ const useStyles = makeStyles((theme: Theme) =>
             border: '1px solid black',
             boxShadow: theme.shadows[5],
             padding: theme.spacing(2, 4, 3),
-            width: "500px"
+            width: "700px",
+            height: "600px"
 
         },
         root: {
             '& > *': {
                 margin: theme.spacing(1),
-                width: '50ch',
+                width: '60ch',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
@@ -124,10 +125,11 @@ const ThreadModal: React.FC<Props> = ({ open, setOpen }) => {
                                 id="outlined-multiline-static"
                                 label="Body"
                                 multiline
-                                rows={8}
+                                rows={12}
                                 variant="outlined"
                                 value={body}
                                 onChange={(e) => setBody(e.target.value)}
+
                             />
                         </form>
                         <ModalDropdown category={category} setCategory={setCategory} />
