@@ -10,17 +10,19 @@ import { IoMdTrendingUp } from 'react-icons/io';
 import categoryActions from "../../actions/actions"
 import Loading from "../loading/navLoader"
 
+
 interface Props {
 
 }
 
 const Navbar: React.FC<Props> = ({ }) => {
-    const history = useHistory();
+
     const { dispatch: themeDispatch, themeData } = useContext(ThemeContext);
     const [term, setTerm] = useState("")
     const { fetchTrends } = categoryActions();
     const [trends, setTrends] = useState([])
     const [loading, setLoading] = useState(true)
+    const history = useHistory();
 
     const home = () => {
         history.push({
@@ -53,6 +55,19 @@ const Navbar: React.FC<Props> = ({ }) => {
 
     };
 
+
+    const handleThreadRoute = async (trend: any) => {
+        let thread_id = trend.thread_id
+        setTerm("")
+        history.push({
+            pathname: `/t/${thread_id}/${trend.thread_title}`,
+            state: { id: thread_id, image: trend.image },
+
+        });
+
+
+    }
+
     return (
         <>
             <div className={`navbar-${themeData.theme}`}>
@@ -82,7 +97,7 @@ const Navbar: React.FC<Props> = ({ }) => {
                         </div>
                         <div className="trends-container">
                             {loading ? <Loading /> : <div className="trend-container">{trends.map((trend: any) => (
-                                <div className="trend">
+                                <div className="trend" onClick={() => handleThreadRoute(trend)}>
                                     <div className="trend-title">
                                         <span className="trend-chart-icon">
                                             <IoMdTrendingUp />

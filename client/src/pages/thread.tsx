@@ -114,6 +114,13 @@ const Thread: React.FC<Props> = ({ recents, setRecents }) => {
 
 
 
+    useEffect(() => {
+        onMount()
+
+
+    }, [match.params.thread_id])
+
+
 
     return (
         <>
