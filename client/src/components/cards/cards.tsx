@@ -26,6 +26,15 @@ const Card: React.FC<Props> = ({ card, setState }) => {
         });
 
     }
+    const handleThreadRoute = async (thread: Thread) => {
+
+        history.push({
+            pathname: `/t/${thread.thread_id}/${thread.thread_title}`,
+            state: { id: thread.thread_id },
+
+        });
+
+    }
 
 
     return (
@@ -58,7 +67,7 @@ const Card: React.FC<Props> = ({ card, setState }) => {
                                 return (
                                     <div className="recent-thread">
 
-                                        <span className="recent-thread-title">{thread.thread_title}</span>
+                                        <span className="recent-thread-title" onClick={() => handleThreadRoute(thread)}>{thread.thread_title}</span>
                                         <Moment fromNow className="date">{thread.date}</Moment>
 
                                     </div>
