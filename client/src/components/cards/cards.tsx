@@ -26,6 +26,7 @@ const Card: React.FC<Props> = ({ card, setState }) => {
         });
 
     }
+
     const handleThreadRoute = async (thread: Thread) => {
 
         history.push({
