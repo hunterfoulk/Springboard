@@ -1,10 +1,12 @@
 import axios from "axios";
 import { ThreadContext } from "../context/contexts/threadContext";
+import { SearchContext } from "../context/contexts/searchContext";
 import { useContext } from 'react';
 
 
 export default function CategoryActions() {
     const { dispatch: threadDispatch, threadData } = useContext(ThreadContext);
+    const { dispatch: searchDispatch, searchData } = useContext(SearchContext);
 
     async function getCategories() {
         const response = await axios.get("http://localhost:8000/all")
@@ -132,6 +134,24 @@ export default function CategoryActions() {
     }
 
 
+
+    async function searchThreads(term) {
+
+        try {
+            console.log("term", term)
+
+            const response = await axios.get("http://localhost:8000/search", { params: { term: term } });
+            searchDispatch({ type: 'SET_SEARCH_RESULTS', searchResults: response.data });
+
+
+        } catch (error) {
+            console.log(error)
+        }
+
+    }
+
+
+
     return {
         getCategories,
         createThread,
@@ -141,7 +161,8 @@ export default function CategoryActions() {
         fetchThread,
         createComment,
         createReply,
-        fetchTrends
+        fetchTrends,
+        searchThreads
     }
 }
 

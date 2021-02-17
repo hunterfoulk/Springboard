@@ -8,6 +8,7 @@ import { createBrowserHistory } from "history";
 import ThreadModal from "./components/modal/modal"
 import Dropdown from "./components/dropdown/dropdown"
 import Thread from "./pages/thread"
+import Search from "./pages/search"
 import { ThemeContext } from "./context/contexts/themeContext"
 
 function Routes() {
@@ -25,10 +26,11 @@ function Routes() {
                 <ThreadModal open={open} setOpen={setOpen} />
                 < Switch >
                     <Route path='/' component={Homepage} exact setState={setState} />
-                    <Route path="/t/:category" render={(props) => (
+                    <Route path="/c/:category_id/:category" render={(props) => (
                         <ThreadResults {...props} setState={setState} state={state} recents={recents} setRecents={setRecents} />
                     )} exact />
                     <Route path='/t/:thread_id/:thread' component={Thread} exact setState={setState} recents={recents} setRecents={setRecents} />
+                    <Route path='/search/:term' component={Search} exact />
 
                 </Switch>
 

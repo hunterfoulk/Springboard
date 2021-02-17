@@ -32,8 +32,8 @@ const ThreadResults: React.FC<Props> = ({ state, setState, recents, setRecents }
     const history = useHistory();
 
     const onMount = async () => {
-        await fetchThreads(location.state.category)
-        let image = await fetchCategoryImage(location.state.category)
+        await fetchThreads(match.params.category_id)
+        let image = await fetchCategoryImage(match.params.category_id)
         setHeader(match.params.category)
         setImage(image)
         setState(match.params.category)

@@ -70,6 +70,7 @@ app.get('/all', async (req, res, next) => {
 
 });
 
+
 app.get('/fetchThreads', async (req, res, next) => {
   try {
     const { term } = req.query;
@@ -78,9 +79,6 @@ app.get('/fetchThreads', async (req, res, next) => {
 
     let category = parseInt(term)
     // const threads = await knex.from('threads').select('*').where('category', '=', category).join("category", "category.category_id", "=", "threads.category")
-
-
-
 
     // const newThreads = await knex.raw("SELECT C.*, COALESCE(json_agg(E) FILTER(WHERE E.comment_id IS NOT NULL), '[]') AS comments FROM threads CLEFT JOIN comments E ON C.thread_id = E.thread_id WHERE e.category = ? '", [term])
 
@@ -264,6 +262,31 @@ app.get('/fetchTrends', async (req, res, next) => {
 
 
     res.send(threads)
+
+  } catch (error) {
+    console.log(error)
+  }
+
+});
+
+
+
+app.get('/search', async (req, res, next) => {
+  try {
+    const { term } = req.query;
+    console.log("fetch fired", term)
+
+    const searchResults = await knex('threads').where('thread_title', 'like', `%${term}%`).join("category", "category.category_id", "=", "threads.category")
+    console.log("searchResults", searchResults)
+
+    for (const result of searchResults) {
+
+      const comments = await knex('comments').where('thread_id', '=', result.thread_id)
+      result.comments = comments
+      result.sharing = false
+    }
+
+    res.send(searchResults)
 
   } catch (error) {
     console.log(error)

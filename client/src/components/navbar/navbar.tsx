@@ -7,6 +7,7 @@ import { IoMdSearch } from 'react-icons/io';
 import { IoIosCloseCircleOutline } from 'react-icons/io';
 import { AiFillThunderbolt } from 'react-icons/ai';
 import { IoMdTrendingUp } from 'react-icons/io';
+import { GiBouncingSpring } from 'react-icons/gi';
 import categoryActions from "../../actions/actions"
 import Loading from "../loading/navLoader"
 
@@ -22,7 +23,9 @@ const Navbar: React.FC<Props> = ({ }) => {
     const { fetchTrends } = categoryActions();
     const [trends, setTrends] = useState([])
     const [loading, setLoading] = useState(true)
+    const [typing, setTyping] = useState(false)
     const history = useHistory();
+    const isMobile = window.innerWidth < 750
 
     const home = () => {
         history.push({
@@ -42,16 +45,24 @@ const Navbar: React.FC<Props> = ({ }) => {
 
     const handleChange = async (event: React.ChangeEvent<{ value: string }>) => {
         setTerm(event.target.value);
+        if (window.innerWidth > 750) {
 
+
+            if (typing === false) {
+                setTyping(true)
+
+                const trendingArr = await fetchTrends()
+                console.log("trendings", trendingArr)
+
+                setLoading(false)
+                setTrends(trendingArr)
+            }
+        } else {
+            return
+        }
         console.log("event", event.target.value)
 
-        if (term.length >= 0) {
-            const trendingArr = await fetchTrends()
-            console.log("trendings", trendingArr)
 
-            setLoading(false)
-            setTrends(trendingArr)
-        }
 
     };
 
@@ -64,25 +75,36 @@ const Navbar: React.FC<Props> = ({ }) => {
             state: { id: thread_id, image: trend.image },
 
         });
-
-
     }
+
+    const handleTermClick = async () => {
+        setTerm("")
+        history.push({
+            pathname: `/search/${term}`,
+            state: { term: term },
+
+        });
+    }
+
+
 
     return (
         <>
             <div className={`navbar-${themeData.theme}`}>
                 <div className="nav-left">
+                    {isMobile ? <span style={{ cursor: "pointer", fontSize: "35px", marginLeft: "15px", position: "relative", top: "2px", left: "5px" }} onClick={home}><GiBouncingSpring /></span> : <span style={{ cursor: "pointer", marginLeft: "15px" }} onClick={home}>Springboard</span>}
 
-                    <span style={{ cursor: "pointer", marginLeft: "15px" }} onClick={home}>Springboard</span>
                 </div>
                 <div className="nav-middle">
-                    <input type="text" value={term} onChange={handleChange} />
-                    {term !== "" && <div className="search-dropdown">
+                    <form onSubmit={() => handleTermClick()}>
+                        <input type="text" value={term} onChange={handleChange} />
+                    </form>
+                    {term !== "" && window.innerWidth > 750 && <div className="search-dropdown">
                         <div className="term-container">
                             <div className="term-icon-container">
                                 <span><IoMdSearch /></span>
                             </div>
-                            <div className="term-text-container">
+                            <div className="term-text-container" onClick={() => handleTermClick()}>
                                 <span>
                                     {term}
                                 </span>

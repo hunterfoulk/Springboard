@@ -13,7 +13,7 @@ interface Props {
 
 export const ThemeContextProvider = ({ children }: Props) => {
     const initialState = {
-        theme: "dark"
+        theme: "light"
     };
     const [themeData, dispatch] = useReducer(themeReducer, initialState);
 

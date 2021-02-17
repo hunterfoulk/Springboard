@@ -20,7 +20,7 @@ const Card: React.FC<Props> = ({ card, setState }) => {
         console.log("PUSH", category)
         console.log("id", card.category_id)
         history.push({
-            pathname: `/t/${category}`,
+            pathname: `/c/${card.category_id}/${category}`,
             state: { category: card.category_id, header: category, dropdownState: category },
 
         });
