@@ -57,7 +57,7 @@ const Dropdown: React.FC<Props> = ({ setOpen, setState, state }) => {
         console.log("VALUE", event.target.value)
 
         history.push({
-          pathname: `/t/${technology}`,
+          pathname: `/c/${event.target.value}/${technology}`,
           state: { category: event.target.value, header: technology, dropdownState: technology },
 
         });
@@ -71,7 +71,7 @@ const Dropdown: React.FC<Props> = ({ setOpen, setState, state }) => {
 
         console.log("VALUE", event.target.value)
         history.push({
-          pathname: `/t/${fitness}`,
+          pathname: `/c/${event.target.value}/${fitness}`,
           state: { category: event.target.value, header: fitness, dropdownState: fitness },
 
         });
@@ -82,7 +82,8 @@ const Dropdown: React.FC<Props> = ({ setOpen, setState, state }) => {
         let science = 'Science'
         setState(science)
         history.push({
-          pathname: `/t/${science}`,
+          pathname: `/c/${event.target.value}/${science}`,
+
           state: { category: event.target.value, header: science, dropdownState: science },
 
         });
@@ -93,7 +94,8 @@ const Dropdown: React.FC<Props> = ({ setOpen, setState, state }) => {
         let finance = 'Finance'
         setState(finance)
         history.push({
-          pathname: `/t/${finance}`,
+          pathname: `/c/${event.target.value}/${finance}`,
+
           state: { category: event.target.value, header: finance, dropdownState: finance },
 
         });
@@ -104,7 +106,8 @@ const Dropdown: React.FC<Props> = ({ setOpen, setState, state }) => {
         let travel = 'Travel'
         setState(travel)
         history.push({
-          pathname: `/t/${travel}`,
+          pathname: `/c/${event.target.value}/${travel}`,
+
           state: { category: event.target.value, header: travel, dropdownState: travel },
 
         });
@@ -115,7 +118,8 @@ const Dropdown: React.FC<Props> = ({ setOpen, setState, state }) => {
         let books = 'Books'
         setState(books)
         history.push({
-          pathname: `/t/${books}`,
+          pathname: `/c/${event.target.value}/${books}`,
+
           state: { category: event.target.value, header: books, dropdownState: books },
 
         });
@@ -126,7 +130,7 @@ const Dropdown: React.FC<Props> = ({ setOpen, setState, state }) => {
         let politics = 'Politics'
         setState(politics)
         history.push({
-          pathname: `/t/${politics}`,
+          pathname: `/c/${event.target.value}/${politics}`,
           state: { category: event.target.value, header: politics, dropdownState: politics },
 
         });
@@ -137,7 +141,7 @@ const Dropdown: React.FC<Props> = ({ setOpen, setState, state }) => {
         let programming = 'Programming'
         setState(programming)
         history.push({
-          pathname: `/t/${programming}`,
+          pathname: `/c/${event.target.value}/${programming}`,
           state: { category: event.target.value, header: programming, dropdownState: programming },
 
         });
@@ -147,7 +151,7 @@ const Dropdown: React.FC<Props> = ({ setOpen, setState, state }) => {
         let art = 'Art'
         setState(art)
         history.push({
-          pathname: `/t/${art}`,
+          pathname: `/c/${event.target.value}/${art}`,
           state: { category: event.target.value, header: art, dropdownState: art },
 
         });

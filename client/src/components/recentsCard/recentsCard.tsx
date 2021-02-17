@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import "./recentsCard.scss"
 import { ThemeContext } from "../../context/contexts/themeContext"
+import { Link, useHistory } from "react-router-dom";
 
 interface Props {
     recents: string[]
@@ -8,6 +9,10 @@ interface Props {
 
 const RecentCard: React.FC<Props> = ({ recents }) => {
     const { dispatch: themeDispatch, themeData, } = useContext(ThemeContext);
+    const history = useHistory();
+
+
+
 
     return (
         <>
