@@ -48,6 +48,13 @@ const Dropdown: React.FC<Props> = ({ setOpen, setState, state }) => {
     switch (event.target.value) {
       case '0':
         console.log('all was chosen');
+
+        history.push({
+          pathname: `/`,
+
+        });
+        setState("All")
+
         break;
       case '2':
         console.log('tech was chosen');

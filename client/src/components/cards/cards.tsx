@@ -19,6 +19,7 @@ const Card: React.FC<Props> = ({ card, setState }) => {
         let category = card.title.charAt(0).toUpperCase() + card.title.slice(1)
         console.log("PUSH", category)
         console.log("id", card.category_id)
+        // await setState(category)
         history.push({
             pathname: `/c/${card.category_id}/${category}`,
             state: { category: card.category_id, header: category, dropdownState: category },
