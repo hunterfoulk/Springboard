@@ -6,6 +6,7 @@ const pool = require("./pg");
 const { cors, corsOptions } = require("./cors");
 var whitelist = ["http://localhost:3000", "https://hunterfoulk.com"];
 const short = require('short-uuid');
+require("dotenv").config();
 
 app.use(cors(corsOptions(whitelist)), (req, res, next) => {
   console.log("cors fired");
@@ -26,10 +27,10 @@ app.use(express.json());
 var knex = require('knex')({
   client: 'pg',
   connection: {
-    host: 'jordan-personal-pgsql.postgres.database.azure.com',
-    user: 'jordanroot@jordan-personal-pgsql',
-    password: 'Bestpker23!',
-    database: 'hunt-db'
+    host: process.env.HOST,
+    user: process.env.USER,
+    password: process.env.PASS,
+    database: process.env.DATABASE
   },
   pool: { min: 0, max: 7 }
 })
@@ -49,14 +50,14 @@ app.get('/all', async (req, res, next) => {
     for (const category of categories) {
       const threads = await knex.from('threads').select('*').where('category', '=', category.category_id)
       category.threads = threads
-      // console.log(category)
+
     }
 
 
     if (!categories) {
       throw new Error("no categories found!");
     }
-    // console.log(categories)
+
 
     res.send(categories);
 
@@ -78,9 +79,7 @@ app.get('/fetchThreads', async (req, res, next) => {
     console.log("term", term)
 
     let category = parseInt(term)
-    // const threads = await knex.from('threads').select('*').where('category', '=', category).join("category", "category.category_id", "=", "threads.category")
 
-    // const newThreads = await knex.raw("SELECT C.*, COALESCE(json_agg(E) FILTER(WHERE E.comment_id IS NOT NULL), '[]') AS comments FROM threads CLEFT JOIN comments E ON C.thread_id = E.thread_id WHERE e.category = ? '", [term])
 
     const newThreads = await knex.raw("select c.*, coalesce(e.comments, '[]') as comments from threads as c left outer join(select e.thread_id, json_agg(e) as comments from comments as e group by e.thread_id ) as e on e.thread_id = c.thread_id WHERE c.category = ?", [term])
 
@@ -163,9 +162,7 @@ app.get('/fetchThread', async (req, res, next) => {
 
     const thread = await knex.from('threads').select("*").where('thread_id', '=', id).join("category", "category.category_id", "=", "threads.category")
 
-    // const comments = await knex.from('comments').select("*").where('thread_id', '=', id)
     const comments = await knex.raw("select c.*, coalesce(e.replies, '[]') as replies from comments as c left outer join(select e.comment_id, json_agg(e) as replies from replies as e group by e.comment_id ) as e on e.comment_id = c.comment_id WHERE c.thread_id = ?", [id])
-    // select c.*, coalesce(e.replies, '[]') as replies from comments as c left outer join(select e.comment_id, json_agg(e) as replies from replies as e group by e.comment_id) as e on e.comment_id = c.comment_id WHERE c.comment_id = 1
     const number = await knex('threads').count('*')
     const date = await knex.raw('SELECT date from threads WHERE thread_id = (SELECT MAX (thread_id) FROM threads)')
     console.log("date", date.rows[0].date)
@@ -182,7 +179,6 @@ app.get('/fetchThread', async (req, res, next) => {
 
 
 
-    // console.log("THREAD", thread[0])
     res.send({ thread: thread[0], count: number[0].count, date: date.rows[0].date })
 
 
