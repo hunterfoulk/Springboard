@@ -10,6 +10,7 @@ interface Props {
 }
 
 const App: React.FC<Props> = ({ }) => {
+  if (process.env.NODE_ENV === 'production') console.log = () => { }
 
 
   return (
