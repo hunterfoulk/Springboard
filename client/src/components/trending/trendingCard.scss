@@ -55,20 +55,31 @@
         width: 100%;
         justify-content: center;
         // background-color: red;
-        .comment-icon {
-          color: rgba(199, 28, 65, 0.856);
-          position: relative;
-          top: 2px;
-          font-size: 15px;
+        .trend-icon-container {
+          display: flex;
+          // background-color: Green;
+          width: 20%;
+          align-items: center;
+          justify-content: flex-end;
+          .comment-icon {
+            color: rgba(199, 28, 65, 0.856);
+            position: relative;
+            top: 2px;
+            font-size: 15px;
+          }
         }
-
-        .title {
-          font-size: 16px;
-          margin-left: 10px;
-        }
-        .title:hover {
-          text-decoration: underline;
-          cursor: pointer;
+        .trend-title-container {
+          // background-color: yellow;
+          display: flex;
+          width: 70%;
+          .title {
+            font-size: 16px;
+            margin-left: 10px;
+          }
+          .title:hover {
+            text-decoration: underline;
+            cursor: pointer;
+          }
         }
       }
     }
@@ -130,25 +141,46 @@
 
       .trend-content {
         display: flex;
+        // align-items: center;
+        // justify-content: center;
         align-items: center;
         // justify-content: center;
         text-align: center;
-        width: 70%;
-        // background-color: red;
-        .comment-icon {
-          color: rgba(199, 28, 65, 0.856);
-          position: relative;
-          top: 2px;
-          font-size: 15px;
-        }
+        width: 100%;
+        justify-content: center;
 
-        .title {
-          font-size: 16px;
-          margin-left: 10px;
+        .trend-icon-container {
+          display: flex;
+          // background-color: Green;
+          width: 20%;
+          height: 100%;
+          align-items: center;
+          justify-content: flex-end;
+          .comment-icon {
+            color: rgba(199, 28, 65, 0.856);
+            position: relative;
+            top: 2px;
+            font-size: 15px;
+          }
         }
-        .title:hover {
-          text-decoration: underline;
-          cursor: pointer;
+        .trend-title-container {
+          // background-color: yellow;
+          display: flex;
+          width: 70%;
+          height: 100%;
+          align-items: center;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          .title {
+            font-size: 16px;
+            margin-left: 10px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+          .title:hover {
+            text-decoration: underline;
+            cursor: pointer;
+          }
         }
       }
     }

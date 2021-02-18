@@ -156,6 +156,26 @@ const Dropdown: React.FC<Props> = ({ setOpen, setState, state }) => {
 
         });
         break;
+      case '10':
+        console.log('gaming was chosen');
+        let gaming = 'Gaming'
+        setState(gaming)
+        history.push({
+          pathname: `/c/${event.target.value}/${gaming}`,
+          state: { category: event.target.value, header: gaming, dropdownState: gaming },
+
+        });
+        break;
+      case '11':
+        console.log('sports was chosen');
+        let sports = 'Sports'
+        setState(sports)
+        history.push({
+          pathname: `/c/${event.target.value}/${sports}`,
+          state: { category: event.target.value, header: sports, dropdownState: sports },
+
+        });
+        break;
       default:
         break;
     }
@@ -181,8 +201,11 @@ const Dropdown: React.FC<Props> = ({ setOpen, setState, state }) => {
           <option style={{ color: "black" }} label="Travel" value="4">Travel</option>
           <option style={{ color: "black" }} label="Books" value="5">Books</option>
           <option style={{ color: "black" }} label="Politics" value="7">Politics</option>
-          <option style={{ color: "black" }} label="Programming" value="8">Politics</option>
-          <option style={{ color: "black" }} label="Art" value="9">Politics</option>
+          <option style={{ color: "black" }} label="Programming" value="8">Programming</option>
+          <option style={{ color: "black" }} label="Art" value="9">Art</option>
+          <option style={{ color: "black" }} label="Gaming" value="10">Gaming</option>
+          <option style={{ color: "black" }} label="Sports" value="11">Sports</option>
+
         </NativeSelect>
 
         <FormHelperText style={{ color: themeData.theme === "dark" ? ' #c9d1d9' : "black" }}>Change Category</FormHelperText>

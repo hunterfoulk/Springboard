@@ -198,6 +198,8 @@
         font-size: 15px;
         .recent-thread-title {
           color: #c9d1d9;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
         .recent-thread-title:hover {
           text-decoration: underline;

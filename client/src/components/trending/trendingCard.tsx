@@ -6,6 +6,7 @@ import { FaCommentAlt } from 'react-icons/fa';
 import { ThemeContext } from "../../context/contexts/themeContext"
 import { Link, useHistory } from "react-router-dom";
 
+import { useLocation, useRouteMatch } from "react-router-dom";
 
 interface Props {
 
@@ -16,6 +17,7 @@ const TrendingCard: React.FC<Props> = ({ }) => {
     const { dispatch: themeDispatch, themeData, } = useContext(ThemeContext);
     const history = useHistory();
     const [state, setState] = useState([])
+    const match = useRouteMatch<any>();
 
     useEffect(() => {
         setState(threadData.trendings)
@@ -38,6 +40,16 @@ const TrendingCard: React.FC<Props> = ({ }) => {
     }
 
 
+    useEffect(() => {
+        setState(threadData.trendings)
+
+
+        return () => {
+            threadDispatch({ type: 'CLEAR_RESULTS' });
+
+        }
+    }, [match.params.category])
+
     return (
         <>
             <div className={`trending-card-${themeData.theme}`}>
@@ -48,13 +60,18 @@ const TrendingCard: React.FC<Props> = ({ }) => {
                 <div className="trendings-bottom-container">
                     {state.map((thread: any) => {
                         state.length = 4
+                        const output = thread.thread_title.split('', 26).reduce((o: any, c: any) => o.length === 25 ? `${o}${c}...` : `${o}${c}`, '')
 
                         return (
                             <div className="trend">
                                 <div className="trend-content">
-                                    <FaCommentAlt className="comment-icon" />
-                                    <span style={{ fontSize: "14px", marginLeft: "5px", marginTop: "2px" }}>{thread.comments.length}</span>
-                                    <span onClick={() => handleThreadRoute(thread)} className="title">{thread.thread_title}</span>
+                                    <div className="trend-icon-container">
+                                        <FaCommentAlt className="comment-icon" />
+                                        <span style={{ fontSize: "14px", marginLeft: "5px", marginTop: "2px" }}>{thread.comments.length}</span>
+                                    </div>
+                                    <div className="trend-title-container">
+                                        <span onClick={() => handleThreadRoute(thread)} className="title">{output}</span>
+                                    </div>
                                 </div>
                             </div>
                         )

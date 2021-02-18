@@ -65,10 +65,11 @@ const Card: React.FC<Props> = ({ card, setState }) => {
                         {card.threads.length === 0 ? <span className="no-threads">No threads currently posted.</span> :
                             card.threads.map((thread) => {
                                 card.threads.length = 3
+                                const output = thread.thread_title.split('', 26).reduce((o, c) => o.length === 25 ? `${o}${c}...` : `${o}${c}`, '')
                                 return (
                                     <div className="recent-thread">
 
-                                        <span className="recent-thread-title" onClick={() => handleThreadRoute(thread)}>{thread.thread_title}</span>
+                                        <span className="recent-thread-title" onClick={() => handleThreadRoute(thread)}>{output}</span>
                                         <Moment fromNow className="date">{thread.date}</Moment>
 
                                     </div>
