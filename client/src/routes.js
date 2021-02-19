@@ -9,6 +9,7 @@ import ThreadModal from "./components/modal/modal"
 import Dropdown from "./components/dropdown/dropdown"
 import Thread from "./pages/thread"
 import Search from "./pages/search"
+import CreateThread from "./pages/createThread"
 import { ThemeContext } from "./context/contexts/themeContext"
 
 function Routes() {
@@ -31,6 +32,7 @@ function Routes() {
                     )} exact />
                     <Route path='/t/:thread_id/:thread' component={Thread} exact setState={setState} recents={recents} setRecents={setRecents} />
                     <Route path='/search/:term' component={Search} exact />
+                    <Route path='/submit' component={CreateThread} exact />
 
                 </Switch>
 

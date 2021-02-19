@@ -2,11 +2,11 @@ const express = require('express');
 const app = express();
 const server = require('http').createServer(app);
 const PORT = 8000;
-const pool = require("./pg");
 const { cors, corsOptions } = require("./cors");
 var whitelist = ["http://localhost:3000", "https://hunterfoulk.com"];
 const short = require('short-uuid');
 require("dotenv").config();
+
 
 app.use(cors(corsOptions(whitelist)), (req, res, next) => {
   console.log("cors fired");

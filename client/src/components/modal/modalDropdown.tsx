@@ -58,6 +58,8 @@ const Dropdown: React.FC<Props> = ({ category, setCategory }) => {
                     <option value={5}>Books</option>
                     <option value={8}>Programming</option>
                     <option value={9}>Art</option>
+                    <option value={10}>Gaming</option>
+                    <option value={11}>Sports</option>
 
                 </NativeSelect>
                 <FormHelperText>Change Category</FormHelperText>

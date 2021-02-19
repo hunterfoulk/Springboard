@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme: Theme) =>
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            border: "none",
         },
         paper: {
             display: 'flex',
@@ -31,9 +32,9 @@ const useStyles = makeStyles((theme: Theme) =>
             justifyContent: 'center',
             alignItems: 'center',
             backgroundColor: theme.palette.background.paper,
-            border: '1px solid black',
-            boxShadow: theme.shadows[5],
+            boxShadow: theme.shadows[6],
             padding: theme.spacing(2, 4, 3),
+            border: "none",
             width: "700px",
             height: "600px"
 
@@ -45,6 +46,7 @@ const useStyles = makeStyles((theme: Theme) =>
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
+                border: "none",
 
             },
         },
@@ -67,26 +69,30 @@ const ThreadModal: React.FC<Props> = ({ open, setOpen }) => {
 
     const handleCreate = async () => {
         console.log("title", title)
-        const payload = {
-            title: title,
-            body: body,
-            category: category,
-        };
+        if (category === "none") {
+            return;
+        } else {
+            const payload = {
+                title: title,
+                body: body,
+                category: category,
+            };
 
-        await createThread(payload)
-        setTitle("")
-        setBody("")
-        setCategory("none")
-        toast.success('Thread Created.', {
-            position: "top-right",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-        });
-        handleClose()
+            await createThread(payload)
+            setTitle("")
+            setBody("")
+            setCategory("none")
+            toast.success('Thread Created.', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+            handleClose()
+        }
     }
 
     return (
