@@ -49,7 +49,8 @@ const Thread: React.FC<Props> = ({ recents, setRecents }) => {
 
 
     const onMount = async () => {
-
+        var url = match.params.thread;
+        url.replace(/%20/g, " ");
         let response = await fetchThread(match.params.thread_id)
         let imageResponse = await fetchCategoryImage(response.thread.category)
 
