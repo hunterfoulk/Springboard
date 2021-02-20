@@ -26,7 +26,6 @@ const ThreadResults: React.FC<Props> = ({ state, setState, recents, setRecents }
     const [image, setImage] = useState<string>("")
     const { dispatch: threadDispatch, threadData } = useContext(ThreadContext);
     const { dispatch: themeDispatch, themeData } = useContext(ThemeContext);
-
     const { fetchThreads, fetchCategoryImage, fetchRecents, fetchThread } = CategoryActions();
     const [loading, setLoading] = useState<boolean>(true)
     const history = useHistory();
