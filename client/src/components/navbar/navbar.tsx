@@ -40,8 +40,9 @@ const useStyles = makeStyles({
         display: "flex",
         backgroundColor: "rgb(248, 248, 248)",
         background: "rgb(248, 248, 248)",
-        // padding: "10px",
-
+        // padding: "5px",
+        marginLeft: "5px",
+        marginTop: "5px"
 
     },
     paper: {
@@ -49,6 +50,7 @@ const useStyles = makeStyles({
         width: "200px",
         display: "flex",
         fontWeight: "bold",
+
     }
 
 });
