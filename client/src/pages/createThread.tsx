@@ -63,10 +63,12 @@ const CreateThread: React.FC<Props> = ({ }) => {
                 <div className="create-thread-body">
                     <textarea placeholder="Body" value={body} onChange={(e) => setBody(e.target.value)} />
                 </div>
+                <div className="new-thread-button-container">
 
-                <button onClick={handleCreate} className="new-thread-button">
-                    Create Thread
+                    <button onClick={handleCreate} className="new-thread-button">
+                        Create Thread
                  </button>
+                </div>
             </div>
         </>
     )
