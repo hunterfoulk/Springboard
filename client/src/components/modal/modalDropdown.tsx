@@ -8,7 +8,7 @@ import NativeSelect from '@material-ui/core/NativeSelect';
 import { GoPlus } from 'react-icons/go';
 import "../modal/modal.scss"
 import { ThemeContext } from "../../context/contexts/themeContext"
-
+import "./createModal.scss"
 interface Props {
     category: string
     setCategory: React.Dispatch<React.SetStateAction<string>>
@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         selectEmpty: {
             marginTop: theme.spacing(2),
+            color: "red"
 
 
         },
@@ -34,6 +35,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Dropdown: React.FC<Props> = ({ category, setCategory }) => {
     const classes = useStyles();
+    const { dispatch: themeDispatch, themeData } = useContext(ThemeContext);
 
 
     const handleChange = (event: React.ChangeEvent<{ value: string }>) => {
@@ -51,7 +53,7 @@ const Dropdown: React.FC<Props> = ({ category, setCategory }) => {
                 <NativeSelect
                     value={category}
                     onChange={handleChange}
-                    // className={classes.selectEmpty}
+                    style={{ color: "#a2a6aa" }}
                     inputProps={{ 'aria-label': 'age' }}
                 >
                     <option value={0}>None</option>
@@ -67,7 +69,7 @@ const Dropdown: React.FC<Props> = ({ category, setCategory }) => {
                     <option value={11}>Sports</option>
 
                 </NativeSelect>
-                <FormHelperText>Change Category</FormHelperText>
+                <FormHelperText style={{ color: "#a2a6aa" }}>Change Category</FormHelperText>
             </FormControl>
         </div>
     );

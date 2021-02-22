@@ -66,7 +66,7 @@ const CreateThread: React.FC<Props> = ({ }) => {
 
                 <button onClick={handleCreate} className="new-thread-button">
                     Create Thread
-                            </button>
+                 </button>
             </div>
         </>
     )
